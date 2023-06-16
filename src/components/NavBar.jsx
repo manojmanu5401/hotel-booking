@@ -34,21 +34,6 @@ const NavBar = () => {
                     </div>
                     <div className="hidden sm:ml-6 sm:block">
                       <div className="flex space-x-4">
-                        {/* {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.to}
-                            className={classNames(
-                              pathname===item.to
-                                ? "cursor-pointer text-gray-700 font-extrabold"
-                                : "text-gray-400 hover:text-gray-700 font-extrabold",
-                              "cursor-pointer px-3 py-2 text-md"
-                            )}
-                            aria-current={item.current ? "page" : undefined}
-                          >
-                            {item.name}
-                          </Link>
-                        ))} */}
                         <Link className="button bg-[#1D3557] px-4 rounded-lg text-white py-2" to="/login">
                           Login
                         </Link>
