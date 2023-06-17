@@ -3,7 +3,7 @@ import Find from "./Find";
 const Banner = () => {
   return (
     <>
-      <div className="container mx-auto max-w-7xl py-2 px-2 sm:px-6 lg:px-8 my-2">
+      <div className="container mx-auto max-w-7xl py-2 px-2 xl:px-0 my-2">
         <div className="relative bg-banner w-full h-[32rem] rounded-[30px] bg-no-repeat bg-cover ">
           <div className="absolute w-full h-full rounded-[30px] bg-gradient-to-r from-slate-600 to-slate-50 mix-blend-multiply"></div>
           <div className="px-5 py-10 sm:px-10 sm:py-16">

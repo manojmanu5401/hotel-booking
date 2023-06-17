@@ -1,7 +1,7 @@
 const Subscribtion = () => {
   return (
     <>
-      <div className="isolate bg-[#EEF8F8] py-16 sm:py-10 my-32 px-10 xl:px-0">
+      <div className="isolate bg-[#EEF8F8] py-16 sm:py-10 my-36 px-10 xl:px-0">
         <div className="container mx-auto max-w-7xl px-8 lg:px-10 bg-white py-24 rounded-[20px] relative">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
             <div className="max-w-xl lg:max-w-lg">

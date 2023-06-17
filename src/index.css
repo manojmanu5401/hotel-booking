@@ -14,3 +14,16 @@
 body{
   font-family: 'Quicksand', sans-serif;
 }
+
+.slick-slide{
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.slick-list{
+  height: 170px !important;
+} 
+
+.slick-arrow{
+  display: none !important;
+}

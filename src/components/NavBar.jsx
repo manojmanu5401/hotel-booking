@@ -1,21 +1,9 @@
-import { Link, useLocation} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 
-const navigation = [
-  { name: "Home", to: "/"},
-  { name: "About", to: "/about"}
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const NavBar = () => {
   const scrollPosition = useScrollPosition();
-  const location = useLocation();
-  const { pathname } = location;
-  console.log("path"+ pathname)
   return (
     <>
       <header
@@ -30,11 +18,24 @@ const NavBar = () => {
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                     <div className="flex flex-shrink-0 items-center">
-                      <Link to="/"><h1 className="text-2xl font-bold">TravelNest</h1></Link>
+                      <Link to="/">
+                        <h1 className="text-2xl font-bold">TravelNest</h1>
+                      </Link>
                     </div>
                     <div className="hidden sm:ml-6 sm:block">
-                      <div className="flex space-x-4">
-                        <Link className="button bg-[#1D3557] px-4 rounded-lg text-white py-2" to="/login">
+                      <div className="flex space-x-4 justify-center items-center">
+                        <div className="flex space-x-4 items-center">
+                          <h2 className="font-bold">IN</h2>
+                          <img
+                            className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                            src="/images/flag.png"
+                            alt=""
+                          />
+                        </div>
+                        <Link
+                          className="button bg-[#1D3557] px-4 rounded-lg text-white py-2"
+                          to="/login"
+                        >
                           Login
                         </Link>
                       </div>
@@ -65,25 +66,22 @@ const NavBar = () => {
 
               <Disclosure.Panel className="sm:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2">
-                  {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-700 hover:bg-gray-700 hover:text-white",
-                        "block rounded-md px-3 py-2 text-base font-medium"
-                      )}
-                      aria-current={item.current ? "page" : undefined}
+                  <div className="flex space-x-4 justify-center items-center">
+                    <div className="flex space-x-4 items-center">
+                      <h2 className="font-bold">IN</h2>
+                      <img
+                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                        src="/images/flag.png"
+                        alt=""
+                      />
+                    </div>
+                    <Link
+                      className="button bg-[#1D3557] px-4 rounded-lg text-white py-2"
+                      to="/login"
                     >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
-                  <button className="button bg-[#1D3557] px-4 rounded-lg text-white">
-                    Login
-                  </button>
+                      Login
+                    </Link>
+                  </div>
                 </div>
               </Disclosure.Panel>
             </>
