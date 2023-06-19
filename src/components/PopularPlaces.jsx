@@ -1,7 +1,7 @@
 const PopularPlaces = () => {
   return (
     <>
-      <div className="container mx-auto max-w-7xl py-2 px-2 sm:px-6 lg:px-8 mb-10 sm:mt-24">
+      <section className="container mx-auto max-w-7xl py-2 px-2 sm:px-6 lg:px-8 mb-10 sm:mt-24">
         <div className="text-center mb-6">
           <h1 className="font-bold text-[40px]">Popular Places</h1>
         </div>
@@ -63,7 +63,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

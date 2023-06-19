@@ -11,8 +11,8 @@ const Home = () => {
     <NavBar/>
     <Banner/>
     <PopularHotels/>
-    <PopularPlaces/>
     <Offers/>
+    <PopularPlaces/>
     <Subscribtion/>
     <Fotter/>    
     </>

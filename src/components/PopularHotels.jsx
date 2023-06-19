@@ -1,4 +1,4 @@
-import Hotel from "./Hotel";
+import Hotel from "./PopularHotelCard";
 
 const PopularHotels = () => {
   const hotels = [
@@ -27,7 +27,7 @@ const PopularHotels = () => {
 
   return (
     <>
-      <div className="container mx-auto max-w-7xl py-2 px-2 sm:px-6 lg:px-8 mt-96 mb-10 sm:mt-40">
+      <section className="container mx-auto max-w-7xl py-2 px-2 sm:px-6 lg:px-8 mt-96 mb-10 sm:mt-28">
         <div className="relative mb-10 sm:after:content-[''] sm:after:bg-[#A8DADC] sm:after:w-full sm:after:h-60 sm:after:translate-y-[25%] sm:after:absolute sm:after:bottom-0 sm:after:inset-x-0 sm:after:z-[-1]  sm:after:mx-auto sm:after:rounded-[30px] sm:after:opacity-20">
           <div className="text-center mb-6">
             <h1 className="font-bold text-[40px]">Popular Hotels</h1>
@@ -50,7 +50,7 @@ const PopularHotels = () => {
             expand_circle_down
           </span>
         </div>
-      </div>
+      </section>
     </>
   );
 };

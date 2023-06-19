@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchItem } from "../state/searchSlice";
+import {useNavigate} from "react-router-dom"
 
 const Find = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [date, setDate] = useState(null);
+  
 
   const handleCheckInDate = (e) => {
     setCheckInDate(e.target.value);
@@ -23,17 +29,33 @@ const Find = () => {
 
     const formattedDate = `${year}-${month}-${day}`;
     console.log(formattedDate);
-    setDate(formattedDate)
+    setDate(formattedDate);
   };
 
   useEffect(() => {
     getTodayDate();
   }, []);
 
+  const submitSearch = (e) => {
+    e.preventDefault();
+    const data = {
+      location: e.target.location.value,
+      checkIn: e.target.checkin.value,
+      checkOut: e.target.checkout.value,
+      guests: e.target.guests.value
+    };
+    console.log(data)
+    dispatch(setSearchItem(data));
+    navigate('/hotels')
+  };
+
   return (
     <>
-      <div className="absolute mx-auto right-2/4 bottom-0 translate-x-2/4 translate-y-[75%] sm:translate-y-[60%] rounded-3xl w-10/12 sm:w-11/12 px-5 py-5 bg-white drop-shadow-xl">
-        <form className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-5 sm:divide-x">
+      <div className="mx-auto rounded-3xl px-5 py-5 bg-white drop-shadow-xl">
+        <form
+          onSubmit={submitSearch}
+          className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-5 sm:divide-x"
+        >
           <div>
             <label
               htmlFor="location"
@@ -112,7 +134,10 @@ const Find = () => {
               />
             </div>
           </div>
-          <button className="button bg-[#1D3557] px-4 py-2 rounded-lg text-white">
+          <button
+            type="submit"
+            className="button bg-[#1D3557] px-4 py-4 sm:py-2 rounded-lg text-white"
+          >
             Check Now
           </button>
         </form>
