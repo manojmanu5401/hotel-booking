@@ -4,7 +4,8 @@ const initialState = {
   location: null,
   checkIn: null,
   checkOut: null,
-  guests: 1,
+  guests: null,
+  days: null,
 };
 
 export const searchSlice = createSlice({
@@ -16,6 +17,7 @@ export const searchSlice = createSlice({
       state.checkIn = action.payload.checkIn;
       state.checkOut = action.payload.checkOut;
       state.guests = action.payload.guests;
+      state.days = action.payload.days;
     },
   },
 });

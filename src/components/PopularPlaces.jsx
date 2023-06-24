@@ -7,7 +7,7 @@ const PopularPlaces = () => {
         </div>
         <div className="w-full max-w-7xl p-5 pb-10 columns-1 mx-auto mb-10 gap-5 sm:columns-3 space-y-5">
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/delhi.jpg" alt="" loading="lazy"/>
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">
@@ -15,7 +15,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/mumbai.jpg" alt="" loading="lazy"/>
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">
@@ -23,7 +23,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/hydrabad.jpg" alt="" loading="lazy"/>
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">
@@ -31,7 +31,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/orissa.jpg" alt="" loading="lazy"/>
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">
@@ -39,7 +39,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/chennai.jpg" alt=""loading="lazy" />
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">
@@ -47,7 +47,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/bengalore.jpg" alt="" loading="lazy"/>
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">
@@ -55,7 +55,7 @@ const PopularPlaces = () => {
             </h1>
           </div>
           <div className="relative ">
-            <a href="/a">
+            <a href="/">
               <img className="rounded-xl hover:opacity-75" src="/images/kolkata.jpg" alt="" loading="lazy"/>
             </a>
             <h1 className="absolute text-lg font-[500px] text-white bottom-3 left-5 backdrop-blur-sm bg-white/30 rounded-full px-4">

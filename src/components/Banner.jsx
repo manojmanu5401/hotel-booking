@@ -10,10 +10,13 @@ const Banner = () => {
             <h1 className="text-[50px] font-bold text-white  mix-blend-color-dodge sm:max-w-md">
               Enjoy Your Dream Vacation
             </h1>
-            <h2 className="text-xl text-white mix-blend-color-dodge font-light sm:max-w-sm py-4">Unlock Extraordinary Experiences: Discover the World's Finest Hotels at Your Fingertips!</h2>
+            <h2 className="text-xl text-white mix-blend-color-dodge font-light sm:max-w-sm py-4">
+              Unlock Extraordinary Experiences: Discover the World's Finest
+              Hotels at Your Fingertips!
+            </h2>
           </div>
           <div className="absolute w-10/12 sm:w-11/12 mx-auto right-2/4 bottom-0 translate-x-2/4 translate-y-[75%] sm:translate-y-[60%]">
-          <Find/>
+            <Find />
           </div>
         </div>
       </section>

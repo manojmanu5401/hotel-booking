@@ -1,5 +1,4 @@
-import Slider from "react-slick";
-
+import Carousel from 'react-elastic-carousel'
 const offersList = [
   {
     id: "1",
@@ -27,33 +26,14 @@ const offersList = [
     desc: "Grab this offer now",
   },
 ];
-
-var settings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  initialSlide: 0,
-  responsive: [
-    {
-      breakpoint: 800,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 2,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
-
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2, pagination: false },
+  { width: 850, itemsToShow: 3, itemsToScroll: 1 },
+  { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
+  { width: 1450, itemsToShow: 5 },
+  { width: 1750, itemsToShow: 6 },
+]
 const Offers = () => {
   return (
     <>
@@ -61,11 +41,11 @@ const Offers = () => {
         <div className="text-center mb-6">
           <h1 className="font-bold text-[40px]">Offers</h1>
         </div>
-        <Slider {...settings}>
-          {offersList.map((data) => {
+        <Carousel breakPoints={breakPoints}>
+        {offersList.map((data) => {
             return (
               <div
-                className=" p-6 bg-[#1D3557] rounded-lg shadow-lg"
+                className=" p-6 bg-[#1D3557] rounded-lg shadow-lg lg:w-[350px]"
                 key={data.id}
               >
                 <h5 className="mb-1 text-md font-bold tracking-tight text-white">
@@ -83,7 +63,7 @@ const Offers = () => {
               </div>
             );
           })}
-        </Slider>
+      </Carousel>
       </section>
     </>
   );

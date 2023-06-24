@@ -15,15 +15,21 @@ body{
   font-family: 'Quicksand', sans-serif;
 }
 
-.slick-slide{
-  padding-right: 20px;
-  padding-left: 20px;
+.lbWDau:hover:enabled, .lbWDau:focus:enabled{
+  background-color: #EEE !important;
+  color:black !important;
 }
 
-.slick-list{
-  height: 170px !important;
-} 
+.lbWDau{
+  background-color: white !important;
+}
 
-.slick-arrow{
-  display: none !important;
+.TOOOs{
+  background-color: #EEF8F8 !important;
+  box-shadow: 0 0 1px 3px #1D3557 !important;
+}
+
+.TOOOs:hover, .TOOOs:focus{
+  background-color: #EEF8F8 !important;
+  box-shadow: 0 0 1px 3px #1D3557 !important;
 }

@@ -23,9 +23,9 @@ const Form = (props) => {
               <form className="space-y-4 md:space-y-6" action="#">
                 {fields.map((field) => {
                   return (
-                    <div>
+                    <div key={field.name}>
                       <label
-                        for={field.name}
+                        htmlFor={field.name}
                         className="block mb-2 text-sm font-medium text-gray-900"
                       >
                         {field.name}
@@ -41,7 +41,9 @@ const Form = (props) => {
                     </div>
                   );
                 })}
-                <div className={`text-center ${type === "Login" ? "" : "hidden"}`}>
+                <div
+                  className={`text-center ${type === "Login" ? "" : "hidden"}`}
+                >
                   <p
                     href="#"
                     className="text-sm font-bold text-primary-600 text-[#1D3557] cursor-pointer"
@@ -51,7 +53,9 @@ const Form = (props) => {
                 </div>
                 <button
                   type="submit"
-                  onClick={()=>{navigate('/')}}
+                  onClick={() => {
+                    navigate("/");
+                  }}
                   className="w-full text-white bg-[#1D3557] hover:bg-primary-700 rounded-lg text-sm px-5 py-2.5 text-center font-bold"
                 >
                   {type}
