@@ -3,17 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchItem } from "../state/searchSlice";
 import { useNavigate } from "react-router-dom";
 
-
-const Find = () => {
+const SearchHotel = () => {
+  const cities = [
+    "Bengalore",
+    "Chennai",
+    "Delhi",
+    "Hydrabad",
+    "Jaipur",
+    "Kolkata",
+    "Mumbai",
+  ];
   const dispatch = useDispatch();
-  const search = useSelector((state) => state.search);
-  console.log(search);
   const navigate = useNavigate();
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
+  const search = useSelector((state) => state.search);
+  const [checkInDate, setCheckInDate] = useState(search.checkIn);
+  const [checkOutDate, setCheckOutDate] = useState(search.checkOut);
   const [minCheckOutDate, setMinCheckOutDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [guests, setGuests] = useState("");
+  const [location, setLocation] = useState(search.location);
+  const [guests, setGuests] = useState(search.guests);
   const [date, setDate] = useState(null);
 
   const handleCheckInDate = (e) => {
@@ -22,18 +29,18 @@ const Find = () => {
     setCheckOutDate(null);
   };
 
-  const updateMinCheckOutDate = (date)=>{
+  const updateMinCheckOutDate = (date) => {
     const today = new Date(date);
     var tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-  
+
     var year = tomorrow.getFullYear();
-    var month = String(tomorrow.getMonth() + 1).padStart(2, '0');
-    var day = String(tomorrow.getDate()).padStart(2, '0');
-  
-    var tomorrowDate = year + '-' + month + '-' + day;
+    var month = String(tomorrow.getMonth() + 1).padStart(2, "0");
+    var day = String(tomorrow.getDate()).padStart(2, "0");
+
+    var tomorrowDate = year + "-" + month + "-" + day;
     setMinCheckOutDate(tomorrowDate);
-  }
+  };
 
   const handleCheckOutDate = (e) => {
     setCheckOutDate(e.target.value);
@@ -46,7 +53,7 @@ const Find = () => {
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
 
-    const formattedDate = year + '-' + month + '-' + day;
+    const formattedDate = year + "-" + month + "-" + day;
     setDate(formattedDate);
     updateMinCheckOutDate(formattedDate);
   };
@@ -63,11 +70,11 @@ const Find = () => {
     var timeDiff = Math.abs(end.getTime() - start.getTime());
     const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
     const data = {
-      location: location,
-      checkIn: checkInDate,
-      checkOut: checkOutDate,
-      guests: guests,
-      days: days
+      location: e.target.location.value,
+      checkIn: e.target.checkin.value,
+      checkOut: e.target.checkout.value,
+      guests: e.target.guests.value,
+      days: days,
     };
     dispatch(setSearchItem(data));
     navigate("/hotels");
@@ -88,16 +95,23 @@ const Find = () => {
               Location
             </label>
             <div className="">
-              <input
-                type="text"
+              <select
                 name="location"
-                defaultValue={search.location}
+                value={location}
                 id="location"
                 onChange={(e)=>{setLocation(e.target.value)}}
-                placeholder="Where are you going ?"
+                autoComplete="country-name"
                 className="block w-full rounded-md border-transparent px-3.5 py-2 text-gray-900 focus:ring-0 focus:ring-offset-0 focus:outline-0 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 required
-              />
+              >
+                <option selected disabled value="">Where are you going ?</option>
+                { 
+                  cities.map((city)=>{
+                    return <option value={city} key={city}>{city}</option>
+                  })
+                }
+                
+              </select>
             </div>
           </div>
           <div>
@@ -112,7 +126,7 @@ const Find = () => {
                 type="date"
                 name="checkin"
                 id="checkin"
-                defaultValue={search.checkIn}
+                value={checkInDate}
                 selected={checkInDate}
                 min={date}
                 onChange={handleCheckInDate}
@@ -132,7 +146,7 @@ const Find = () => {
               <input
                 type="date"
                 name="checkout"
-                defaultValue={search.checkOut}
+                value={checkOutDate}
                 selected={checkOutDate}
                 min={minCheckOutDate}
                 onChange={handleCheckOutDate}
@@ -154,10 +168,12 @@ const Find = () => {
                 type="number"
                 name="guests"
                 id="guests"
-                defaultValue={search.guests}
+                value={guests}
                 min="1"
                 max="10"
-                onChange={(e)=>{setGuests(e.target.value)}}
+                onChange={(e) => {
+                  setGuests(e.target.value);
+                }}
                 placeholder="Add number of guests"
                 className="block w-full rounded-md border-transparent px-3.5 py-2 text-gray-900 focus:ring-0 focus:ring-offset-0 focus:outline-0  placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 required
@@ -176,4 +192,4 @@ const Find = () => {
   );
 };
 
-export default Find;
+export default SearchHotel;

@@ -1,4 +1,4 @@
-const Hotel = (props) => {
+const PopularHotelCard = (props) => {
     const {name, price, city, imagePath, rating} = props;
   return (
     <>
@@ -34,4 +34,4 @@ const Hotel = (props) => {
   );
 };
 
-export default Hotel;
+export default PopularHotelCard;

@@ -1,14 +1,24 @@
-import Find from "../components/SearchHotel";
+import SearchHotel from "../components/SearchHotel";
 import NavBar from "../components/NavBar";
 import HotelsList from "../components/HotelsList";
+import { useSelector } from "react-redux";
+import Banner from "../components/Banner";
+import places from "../data/places";
 
 const Hotels = () => {
+  const search = useSelector((state) => state.search);
   return (
     <>
       <NavBar />
-      <section className="container mx-auto max-w-7xl py-2 px-8 my-5">
-        <Find />
-      </section>
+      {search.location && search.checkIn && search.checkOut && search.guests ? (
+        places.filter(place => search.location===place.placeName)
+        .map(place =><Banner title={place.placeName} desc={place.description}  banner={place.image}/>)
+      ) : (
+        <section className="container mx-auto max-w-7xl py-2 px-8 my-5">
+          <SearchHotel />
+        </section>
+      )}
+
       <section className="container mx-auto max-w-7xl py-2 px-5 my-5">
         <HotelsList />
       </section>

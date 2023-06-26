@@ -1,26 +1,26 @@
-import Hotel from "./PopularHotelCard";
+import PopularHotelCard from "./PopularHotelCard";
 
 const PopularHotels = () => {
   const hotels = [
     {
-      name: "The Grand Luxe",
-      city: "Mumbai",
-      imagePath: "/images/hotel1.jpg",
-      price: "3500",
+      name: "The Oberoi",
+      city: "Bengalore",
+      imagePath: "/images/bengalore/oberoi.jpg",
+      price: "6000",
       rating: 5,
     },
     {
-      name: "Elite Oasis",
+      name: "Hyatt Regency Chennai",
       city: "Chennai",
-      imagePath: "/images/hotel2.jpg",
-      price: "2800",
-      rating: 4,
+      imagePath: "/images/chennai/hyatt.jpg",
+      price: "4500",
+      rating: 5,
     },
     {
-      name: "Mari Grand",
-      city: "Delhi",
-      imagePath: "/images/hotel3.jpg",
-      price: "6000",
+      name: "Samode Haveli",
+      city: "Jaipur",
+      imagePath: "/images/jaipur/samode.jpg",
+      price: "4200",
       rating: 4,
     },
   ];
@@ -35,7 +35,7 @@ const PopularHotels = () => {
           <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-3 sm:mx-5">
             {hotels.map((hotel) => {
               return (
-                <Hotel
+                <PopularHotelCard
                   key={hotel.name}
                   name={hotel.name}
                   city={hotel.city}

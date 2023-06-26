@@ -33,3 +33,28 @@ body{
   background-color: #EEF8F8 !important;
   box-shadow: 0 0 1px 3px #1D3557 !important;
 }
+
+.banner{
+  background-image: url('../public/images/banners/banner.jpg');
+}
+.chennai{
+  background-image: url('../public/images/banners/chennai-banner.jpg');
+}
+.bengalore{
+  background-image: url('../public/images/banners/bengalore-banner.jpg');
+}
+.delhi{
+  background-image: url('../public/images/banners/delhi-banner.jpg');
+}
+.mumbai{
+  background-image: url('../public/images/banners/mumbai-banner.jpg');
+}
+.kolkata{
+  background-image: url('../public/images/banners/kolkata-banner.jpg');
+}
+.jaipur{
+  background-image: url('../public/images/banners/jaipur-banner.jpg');
+}
+.hydrabad{
+  background-image: url('../public/images/banners/hydrabad-banner.jpg');
+}

@@ -9,6 +9,8 @@ import PopularPlaces from "../components/PopularPlaces";
 import Subscribtion from "../components/Subscribtion";
 
 const Home = () => {
+    const title = "Enjoy Your Dream Vacation"
+    const desc = "Unlock Extraordinary Experiences: Discover the World's Finest Hotels at Your Fingertips!"
     const dispatch = useDispatch();
     dispatch(setSearchItem({
         location: null,
@@ -19,7 +21,7 @@ const Home = () => {
       }))
     return  <>
     <NavBar/>
-    <Banner/>
+    <Banner title={title} desc={desc} banner="banner"/>
     <PopularHotels/>
     <Offers/>
     <PopularPlaces/>
