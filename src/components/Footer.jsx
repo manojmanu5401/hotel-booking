@@ -1,4 +1,4 @@
-const Fotter = () => {
+const Footer = () => {
   return (
     <>
       <footer className="text-gray-600 body-font">
@@ -83,4 +83,4 @@ const Fotter = () => {
   );
 };
 
-export default Fotter;
+export default Footer;

@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
 
 @layer base {
   input[type="number"]::-webkit-inner-spin-button,
@@ -11,50 +11,79 @@
   }
 }
 
-body{
-  font-family: 'Quicksand', sans-serif;
+body {
+  font-family: "Quicksand", sans-serif;
 }
 
-.lbWDau:hover:enabled, .lbWDau:focus:enabled{
-  background-color: #EEE !important;
-  color:black !important;
+.lbWDau:hover:enabled,
+.lbWDau:focus:enabled {
+  background-color: #eee !important;
+  color: black !important;
 }
 
-.lbWDau{
+.lbWDau {
   background-color: white !important;
 }
 
-.TOOOs{
-  background-color: #EEF8F8 !important;
-  box-shadow: 0 0 1px 3px #1D3557 !important;
+.TOOOs {
+  background-color: #eef8f8 !important;
+  box-shadow: 0 0 1px 3px #1d3557 !important;
 }
 
-.TOOOs:hover, .TOOOs:focus{
-  background-color: #EEF8F8 !important;
-  box-shadow: 0 0 1px 3px #1D3557 !important;
+.TOOOs:hover,
+.TOOOs:focus {
+  background-color: #eef8f8 !important;
+  box-shadow: 0 0 1px 3px #1d3557 !important;
 }
 
-.banner{
-  background-image: url('../public/images/banners/banner.jpg');
+.gDWTyI{
+  margin: 0  !important;
 }
-.chennai{
-  background-image: url('../public/images/banners/chennai-banner.jpg');
+
+.banner {
+  background-image: url("../public/images/banners/banner.jpg");
 }
-.bengalore{
-  background-image: url('../public/images/banners/bengalore-banner.jpg');
+.chennai {
+  background-image: url("../public/images/banners/chennai-banner.jpg");
 }
-.delhi{
-  background-image: url('../public/images/banners/delhi-banner.jpg');
+.bengalore {
+  background-image: url("../public/images/banners/bengalore-banner.jpg");
 }
-.mumbai{
-  background-image: url('../public/images/banners/mumbai-banner.jpg');
+.delhi {
+  background-image: url("../public/images/banners/delhi-banner.jpg");
 }
-.kolkata{
-  background-image: url('../public/images/banners/kolkata-banner.jpg');
+.mumbai {
+  background-image: url("../public/images/banners/mumbai-banner.jpg");
 }
-.jaipur{
-  background-image: url('../public/images/banners/jaipur-banner.jpg');
+.kolkata {
+  background-image: url("../public/images/banners/kolkata-banner.jpg");
 }
-.hydrabad{
-  background-image: url('../public/images/banners/hydrabad-banner.jpg');
+.jaipur {
+  background-image: url("../public/images/banners/jaipur-banner.jpg");
+}
+.hydrabad {
+  background-image: url("../public/images/banners/hydrabad-banner.jpg");
+}
+
+.active-scroll-spy {
+  color: #1d3557;
+  border-bottom: 2px solid #1d3557;
+  font-weight: bold;
+}
+
+.hotel .clHxmD{
+  position: relative;
+}
+
+.hotel .rec-arrow-left{
+  position:absolute;
+  z-index: 1;
+}
+.hotel .rec-arrow-right{
+  position:absolute;
+  z-index: 1;
+  right: 0;
+}
+.hotel .gqbdyc{
+  height:100%;
 }

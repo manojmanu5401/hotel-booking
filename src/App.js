@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import Hotels from "./pages/Hotels";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
+import Hotel from "./pages/Hotel";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,12 +22,15 @@ function App() {
         <Loader />
       ) : (
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/hotels" element={<Hotels />}></Route>
-          </Routes>
+          <ScrollToTop>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+              <Route path="/hotels" element={<Hotels />}></Route>
+              <Route path="/hotel" element={<Hotel />}></Route>
+            </Routes>
+          </ScrollToTop>
         </BrowserRouter>
       )}
     </>

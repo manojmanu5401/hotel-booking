@@ -179,7 +179,7 @@ const HotelsList = () => {
           search.checkIn &&
           search.checkOut &&
           search.guests ? (
-            <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-72 sm:mt-0">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
                 <h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   Showing Properties in {search.location}
@@ -256,6 +256,7 @@ const HotelsList = () => {
                     {filters.map((section) => (
                       <Disclosure
                         as="div"
+                        defaultOpen="true"
                         key={section.id}
                         className="border-b border-gray-200 py-6"
                       >
@@ -310,13 +311,13 @@ const HotelsList = () => {
                     ))}
                   </form>
                   <div className="lg:col-span-3">
-                    {places.filter((place)=>search.location===place.placeName)
-                    .map((place)=>
-                      place.hotels.map((hotel)=>{
-                        return <HotelCard hotel={hotel} key={hotel.id}/>
-                      })
-                    )
-                    }
+                    {places
+                      .filter((place) => search.location === place.placeName)
+                      .map((place) =>
+                        place.hotels.map((hotel) => {
+                          return <HotelCard hotel={hotel} key={hotel.id} />;
+                        })
+                      )}
                   </div>
                 </div>
               </section>

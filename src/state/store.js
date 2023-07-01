@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import SearchReducer  from   './searchSlice'
+import HotelSlice from './hotelSlice'
 
 const Store = configureStore({
     reducer:{
-        search: SearchReducer
+        search: SearchReducer,
+        hotel: HotelSlice
     }
 })
 

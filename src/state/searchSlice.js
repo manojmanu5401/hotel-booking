@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  location: null,
-  checkIn: null,
-  checkOut: null,
-  guests: null,
-  days: null,
+  location: " ",
+  checkIn: " ",
+  checkOut: " ",
+  guests: " ",
+  days: " ",
 };
 
 export const searchSlice = createSlice({

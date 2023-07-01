@@ -4,6 +4,7 @@ import HotelsList from "../components/HotelsList";
 import { useSelector } from "react-redux";
 import Banner from "../components/Banner";
 import places from "../data/places";
+import Fotter from "../components/Footer";
 
 const Hotels = () => {
   const search = useSelector((state) => state.search);
@@ -22,6 +23,7 @@ const Hotels = () => {
       <section className="container mx-auto max-w-7xl py-2 px-5 my-5">
         <HotelsList />
       </section>
+      <Fotter/>
     </>
   );
 };

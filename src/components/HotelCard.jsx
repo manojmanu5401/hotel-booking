@@ -1,8 +1,14 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {sethotelId} from "../state/hotelSlice"
+
 
 const HotelCard = (props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const search = useSelector((state) => state.search);
   const {
+    id,
     name,
     rating,
     stars,
@@ -15,6 +21,12 @@ const HotelCard = (props) => {
     isOffer,
     offer,
   } = props.hotel;
+
+  const availability =(e)=>{
+    e.preventDefault();
+    dispatch(sethotelId({id:id}))
+    navigate('/hotel')      
+  }
   return (
     <>
       <div className="mx-auto border border-[#eee] w-100 h-max rounded-lg p-4 mb-5">
@@ -92,15 +104,17 @@ const HotelCard = (props) => {
                     200}
               </h1>
               <p className="text-[#9DB2BF] text-xs">
-                + ₹{taxAmount}taxes & fees
+                + ₹{taxAmount} taxes & fees
               </p>
               <p className="text-[#526D82] font-bold text-sm">Per Night</p>
               <p className="text-xs">
                 starts at <span className="font-bold text-lg">₹{amout}</span>
               </p>
-              <button className="button bg-[#1D3557] px-4 rounded-lg text-white py-2 mt-1 text-sm">
+              <form onSubmit={availability}>
+                <button type="submit" className="button bg-[#1D3557] px-4 rounded-lg text-white py-2 mt-1 text-sm">
                 See availability
               </button>
+              </form>
             </div>
           </div>
         </div>

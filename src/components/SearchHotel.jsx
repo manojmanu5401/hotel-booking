@@ -21,12 +21,11 @@ const SearchHotel = () => {
   const [minCheckOutDate, setMinCheckOutDate] = useState("");
   const [location, setLocation] = useState(search.location);
   const [guests, setGuests] = useState(search.guests);
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState("");
 
   const handleCheckInDate = (e) => {
     setCheckInDate(e.target.value);
     updateMinCheckOutDate(e.target.value);
-    setCheckOutDate(null);
   };
 
   const updateMinCheckOutDate = (date) => {
@@ -97,14 +96,14 @@ const SearchHotel = () => {
             <div className="">
               <select
                 name="location"
-                value={location}
+                value={location || " "}
                 id="location"
                 onChange={(e)=>{setLocation(e.target.value)}}
                 autoComplete="country-name"
                 className="block w-full rounded-md border-transparent px-3.5 py-2 text-gray-900 focus:ring-0 focus:ring-offset-0 focus:outline-0 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 required
               >
-                <option selected disabled value="">Where are you going ?</option>
+                <option value="">Where are you going ?</option>
                 { 
                   cities.map((city)=>{
                     return <option value={city} key={city}>{city}</option>

@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 transition ease-in-out delay-50 ${
+        className={`sticky top-0 z-10 transition ease-in-out delay-50 ${
           scrollPosition > 0 ? "drop-shadow-lg" : "drop-shadow-none"
         } `}
       >
