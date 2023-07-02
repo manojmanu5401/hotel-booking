@@ -9,9 +9,11 @@ import hotels from "../data/hotels";
 
 const Hotel = () => {
   const hotel = useSelector((state) => state.hotel);
+  const searchData = useSelector((state) => state.search);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [isAmenitiesOpen, setIsAmenitiesOpen] = useState(false);
   const [hotelData, setHotelData] = useState({});
+  const date = new Date(searchData.checkIn);
   const propertyAmenities = [
     {
       icon: "local_parking",
@@ -409,10 +411,6 @@ const Hotel = () => {
       .filter((hotelData) => hotelData.id === hotel.id)
       .map((hotelData) => setHotelData(hotelData));
   };
-  useEffect(() => {
-    console.log(hotel.id);
-    getHotelDetails();
-  }, []);
 
   const onPress = (e) => {
     e.preventDefault();
@@ -425,12 +423,16 @@ const Hotel = () => {
     }
   };
 
+  useEffect(() => {
+    getHotelDetails();
+  }, []);
+
   return (
     <>
       <div className="relative">
         <NavBar />
-        {
-          hotel.id && (<div
+        {hotel.id && (
+          <div
             className="mx-auto mt-6 max-w-2xl grid-cols-3 sm:px-6 sm:grid sm:max-w-7xl lg:grid-cols-4 sm:gap-x-2 lg:px-8 cursor-pointer"
             onClick={() => setGalleryOpen(true)}
           >
@@ -491,8 +493,8 @@ const Hotel = () => {
                 </div>
               </div>
             </div>
-          </div>)
-        }
+          </div>
+        )}
         <Transition appear show={galleryOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -840,14 +842,17 @@ const Hotel = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="col-span-2">
                   <h1 className="font-bold text-4xl">{hotelData.name}</h1>
-                  {
-                    [...Array(hotelData.stars)].map((u,i)=>{
-                      return <span key={i} className="material-symbols-outlined w-5 h-5 text-yellow-300 mr-1">
-                      star
-                    </span>
-                    })
-                  }
-                  
+                  {[...Array(hotelData.stars)].map((u, i) => {
+                    return (
+                      <span
+                        key={i}
+                        className="material-symbols-outlined w-5 h-5 text-yellow-300 mr-1"
+                      >
+                        star
+                      </span>
+                    );
+                  })}
+
                   <div className="flex gap-2 items-center mb-8">
                     <p className="bg-[#1D3557] text-white p-1 rounded-t-md rounded-br-lg text-sm">
                       {hotelData.rating}
@@ -912,9 +917,7 @@ const Hotel = () => {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   ></iframe>
-                  <p className="text-sm">
-                    {hotelData.address}
-                  </p>
+                  <p className="text-sm">{hotelData.address}</p>
                 </div>
               </div>
             </section>
@@ -986,7 +989,7 @@ const Hotel = () => {
                           </span>
                           <p className="">
                             <span className="font-bold">Free cancelation </span>
-                            until 05:59 PM on July 12
+                            until 05:59 PM on {date.toDateString().slice(0,-5)}
                           </p>
                         </div>
                         <div className="flex gap-1 items-start text-sm text-green-700">
@@ -1020,9 +1023,12 @@ const Hotel = () => {
                       <div className="flex items-end justify-between px-5  py-3">
                         <div>
                           <p className="text-sm">
-                            Price for 2 nights, 2 adults
+                            Price for {searchData.days} nights,{" "}
+                            {searchData.guests} adults
                           </p>
-                          <p className="text-xl font-bold">₹{room.amount}</p>
+                          <p className="text-xl font-bold">
+                            ₹{room.amount * searchData.days}
+                          </p>
                           <p className="text-xs text-gray-400">
                             + ₹767 taxes and fees
                           </p>
