@@ -425,6 +425,7 @@ const Hotel = () => {
 
   useEffect(() => {
     getHotelDetails();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -763,7 +764,7 @@ const Hotel = () => {
                                 </h1>
                                 <ul className="list-disc list-inside mb-5 leading-loose text-sm">
                                   {amenity.data.map((text) => (
-                                    <li key={text}>{text}</li>
+                                    <li key={amenity.title}>{text}</li>
                                   ))}
                                 </ul>
                               </div>
@@ -1008,7 +1009,7 @@ const Hotel = () => {
                             return (
                               <div
                                 className="flex gap-2 text-sm mb-1"
-                                key={amenity.icon}
+                                key={amenity.name}
                               >
                                 <span className="material-symbols-outlined  text-sm">
                                   {amenity.icon}
@@ -1099,7 +1100,7 @@ const Hotel = () => {
                 <div>
                   {propertyAmenities.map((amenity) => {
                     return (
-                      <div className="mb-5" key={amenity.icon}>
+                      <div className="mb-5" key={amenity.title}>
                         <div className="flex gap-4 font-bold text-[#1d3557] text-xl items-center">
                           <span className="material-symbols-outlined text-xl">
                             {amenity.icon}
@@ -1124,7 +1125,7 @@ const Hotel = () => {
                 <div>
                   {roomAmenities.map((amenity) => {
                     return (
-                      <div className="mb-5" key={amenity.icon}>
+                      <div className="mb-5" key={amenity.title}>
                         <div className="flex gap-4 font-bold text-[#1d3557] text-xl items-center">
                           <span className="material-symbols-outlined text-xl">
                             {amenity.icon}

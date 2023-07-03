@@ -13,7 +13,7 @@ const Hotels = () => {
       <NavBar />
       {search.location && search.checkIn && search.checkOut && search.guests ? (
         places.filter(place => search.location===place.placeName)
-        .map(place =><Banner title={place.placeName} desc={place.description}  banner={place.image}/>)
+        .map(place =><Banner key={place.id} title={place.placeName} desc={place.description}  banner={place.image}/>)
       ) : (
         <section className="container mx-auto max-w-7xl py-2 px-8 my-5">
           <SearchHotel />

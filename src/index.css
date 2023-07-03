@@ -15,13 +15,13 @@ body {
   font-family: "Quicksand", sans-serif;
 }
 
-.lbWDau:hover:enabled,
-.lbWDau:focus:enabled {
-  background-color: #eee !important;
-  color: black !important;
+.rec-arrow:hover:enabled,
+.rec-arrow:focus:enabled {
+    background-color: #eee !important;
+    color: black !important;
 }
 
-.lbWDau {
+.rec-arrow {
   background-color: white !important;
 }
 
@@ -71,7 +71,7 @@ body {
   font-weight: bold;
 }
 
-.hotel .clHxmD{
+.hotel .rec-carousel-wrapper{
   position: relative;
 }
 
@@ -84,6 +84,11 @@ body {
   z-index: 1;
   right: 0;
 }
+
 .hotel .gqbdyc{
   height:100%;
+}
+
+.hotel .rec-slider-container{
+  margin: 0px !important;
 }

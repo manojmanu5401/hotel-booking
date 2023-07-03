@@ -3,6 +3,7 @@ import PopularHotelCard from "./PopularHotelCard";
 const PopularHotels = () => {
   const hotels = [
     {
+      id:"PH1",
       name: "The Oberoi",
       city: "Bengalore",
       imagePath: "/images/bengalore/oberoi.jpg",
@@ -10,6 +11,7 @@ const PopularHotels = () => {
       rating: 5,
     },
     {
+      id:"PH2",
       name: "Hyatt Regency Chennai",
       city: "Chennai",
       imagePath: "/images/chennai/hyatt.jpg",
@@ -17,6 +19,7 @@ const PopularHotels = () => {
       rating: 5,
     },
     {
+      id:"PH3",
       name: "Samode Haveli",
       city: "Jaipur",
       imagePath: "/images/jaipur/samode.jpg",
@@ -36,7 +39,7 @@ const PopularHotels = () => {
             {hotels.map((hotel) => {
               return (
                 <PopularHotelCard
-                  key={hotel.name}
+                  key={hotel.id}
                   name={hotel.name}
                   city={hotel.city}
                   imagePath={hotel.imagePath}
