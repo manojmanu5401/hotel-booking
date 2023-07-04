@@ -1,6 +1,10 @@
 import Form from "../components/Form";
+import {useEffect}  from "react"
 
 const Register = () => {
+  useEffect(() => {
+    document.title="Register"
+  }, [])
   const fields = [
     {
       name: "Email",

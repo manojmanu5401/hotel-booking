@@ -18,7 +18,8 @@ const NavBar = () => {
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                     <div className="flex flex-shrink-0 items-center">
-                      <Link to="/">
+                      <Link to="/" className="flex items-center">
+                        <img src="/logo2.png" width="50" alt=""/>
                         <h1 className="text-2xl font-bold">TravelNest</h1>
                       </Link>
                     </div>

@@ -11,7 +11,8 @@ const Form = (props) => {
             to="/ "
             className="flex items-center mb-6 text-4xl font-semibold text-[#1D3557]"
           >
-            TravelNest
+            <img src="/logo2.png" width="50" alt=""/>
+            <h1>TravelNest</h1>
           </Link>
           <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

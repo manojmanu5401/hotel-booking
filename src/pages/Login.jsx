@@ -1,6 +1,11 @@
 import Form from "../components/Form";
+import {useEffect}  from "react"
 
 const Login = () => {
+  useEffect(() => {
+    document.title="Login"
+  }, [])
+  
     const fields = [
         {
             name: 'Email',

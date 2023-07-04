@@ -784,7 +784,7 @@ const Hotel = () => {
         <div className="relative hotel">
           <div className="sticky top-0 mt-2 bg-white z-10 sm:text-md font-medium text-center text-gray-500">
             <div className="max-w-7xl mx-auto px-6">
-              <ul className="flex flex-wrap -mb-px border-b">
+              <ul className="flex gap-2 flex-wrap -mb-px border-b">
                 <li className="mr-2">
                   <a
                     href="#overview"

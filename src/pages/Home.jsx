@@ -7,8 +7,12 @@ import PopularHotels from "../components/PopularHotels";
 import { setSearchItem } from "../state/searchSlice";
 import PopularPlaces from "../components/PopularPlaces";
 import Subscribtion from "../components/Subscribtion";
+import {useEffect}  from "react"
 
 const Home = () => {
+  useEffect(() => {
+    document.title="TravelNest"
+  }, [])
     const title = "Enjoy Your Dream Vacation"
     const desc = "Unlock Extraordinary Experiences: Discover the World's Finest Hotels at Your Fingertips!"
     const dispatch = useDispatch();
