@@ -45,7 +45,7 @@ const Offers = () => {
         {offersList.map((data) => {
             return (
               <div
-                className=" p-6 bg-[#1D3557] rounded-lg shadow-lg lg:w-[350px]"
+                className=" p-6 bg-[#1D3557] mx-2 sm:mx-0 rounded-lg shadow-lg lg:w-[350px]"
                 key={data.id}
               >
                 <h5 className="mb-1 text-md font-bold tracking-tight text-white">

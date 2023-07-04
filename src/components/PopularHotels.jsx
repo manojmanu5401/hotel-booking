@@ -3,7 +3,7 @@ import PopularHotelCard from "./PopularHotelCard";
 const PopularHotels = () => {
   const hotels = [
     {
-      id:"PH1",
+      id:"BH1",
       name: "The Oberoi",
       city: "Bengalore",
       imagePath: "/images/bengalore/oberoi.jpg",
@@ -11,15 +11,15 @@ const PopularHotels = () => {
       rating: 5,
     },
     {
-      id:"PH2",
-      name: "Hyatt Regency Chennai",
+      id:"CH1",
+      name: "Hyatt Regency",
       city: "Chennai",
       imagePath: "/images/chennai/hyatt.jpg",
       price: "4500",
       rating: 5,
     },
     {
-      id:"PH3",
+      id:"JH7",
       name: "Samode Haveli",
       city: "Jaipur",
       imagePath: "/images/jaipur/samode.jpg",
@@ -30,7 +30,7 @@ const PopularHotels = () => {
 
   return (
     <>
-      <section className="container mx-auto max-w-7xl py-2 px-2 sm:px-6 lg:px-8 mt-96 mb-10 sm:mt-28">
+      <section className="container mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8 mt-96 mb-10 sm:mt-28">
         <div className="relative mb-10 sm:after:content-[''] sm:after:bg-[#A8DADC] sm:after:w-full sm:after:h-60 sm:after:translate-y-[25%] sm:after:absolute sm:after:bottom-0 sm:after:inset-x-0 sm:after:z-[-1]  sm:after:mx-auto sm:after:rounded-[30px] sm:after:opacity-20">
           <div className="text-center mb-6">
             <h1 className="font-bold text-[40px]">Popular Hotels</h1>
