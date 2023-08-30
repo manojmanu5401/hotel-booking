@@ -414,7 +414,6 @@ const Hotel = () => {
 
   const onPress = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget.href);
     const target = window.document.getElementById(
       e.currentTarget.href.split("#")[1]
     );
