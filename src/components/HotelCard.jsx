@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {sethotelId} from "../state/hotelSlice"
+import  {motion}  from  'framer-motion'
 
 
 const HotelCard = (props) => {
@@ -16,7 +17,7 @@ const HotelCard = (props) => {
     breakfast,
     cancellationPolicy,
     taxAmount,
-    amout,
+    amount,
     image,
     isOffer,
     offer,
@@ -29,7 +30,7 @@ const HotelCard = (props) => {
   }
   return (
     <>
-      <div className="mx-auto border border-[#eee] w-100 h-max rounded-lg p-4 mb-5">
+      <motion.div layout className="mx-auto border border-[#eee] w-100 h-max rounded-lg p-4 mb-5">
         <div className="flex flex-col gap-5 sm:flex-row">
           <img
             src={`/images/${image}`}
@@ -93,13 +94,13 @@ const HotelCard = (props) => {
                   !isOffer ? "hidden" : " "
                 }`}
               >
-                ₹{search.days * amout}
+                ₹{search.days * amount}
               </h3>
               <h1 className="text-lg font-bold text-[#1D3557]">
                 ₹
                 {!isOffer
-                  ? search.days * amout
-                  : search.days * amout -
+                  ? search.days * amount
+                  : search.days * amount -
                     Math.floor(Math.random() * (1000 - 200 + 1)) +
                     200}
               </h1>
@@ -108,7 +109,7 @@ const HotelCard = (props) => {
               </p>
               <p className="text-[#526D82] font-bold text-sm">Per Night</p>
               <p className="text-xs">
-                starts at <span className="font-bold text-lg">₹{amout}</span>
+                starts at <span className="font-bold text-lg">₹{amount}</span>
               </p>
               <form onSubmit={availability}>
                 <button type="submit" className="button bg-[#1D3557] px-4 rounded-lg text-white py-2 mt-1 text-sm">
@@ -128,7 +129,7 @@ const HotelCard = (props) => {
           </span>
           <p className="text-green-700 font-bold text-md">{offer}</p>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

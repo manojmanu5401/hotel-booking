@@ -3,11 +3,12 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import HotelCard from "../components/HotelCard";
 import places from "../data/places";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const sortOptions = [
-  { name: "UserRating", href: "#", current: true },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { id: "1", name: "Price: Low to High", current: false },
+  { id: "2", name: "Price: High to Low", current: false },
 ];
 const filters = [
   {
@@ -59,6 +60,31 @@ function classNames(...classes) {
 const HotelsList = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const search = useSelector((state) => state.search);
+  const [hotels, setHotels] = useState(places);
+
+  const handleSortFilter = (id) => {
+    var hotels = places;
+    if (id === "1") {
+      hotels = hotels.filter((place) => search.location === place.placeName);
+      hotels[0].hotels.sort(
+        (a, b) => parseFloat(a.amount) - parseFloat(b.amount)
+      );
+    }
+    if (id === "2") {
+      hotels = hotels.filter((place) => search.location === place.placeName);
+      hotels[0].hotels.sort(
+        (a, b) => parseFloat(b.amount) - parseFloat(a.amount)
+      );
+    }
+    sortOptions.forEach((option) => {
+      if (option.id === id) option.current = true;
+      else option.current = false;
+    });
+    setHotels(hotels);
+  };
+  useEffect(() => {
+    handleSortFilter("0");
+  }, [search]);
   return (
     <>
       <div className="bg-white">
@@ -208,20 +234,20 @@ const HotelsList = () => {
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="py-1">
                           {sortOptions.map((option) => (
-                            <Menu.Item key={option.name}>
+                            <Menu.Item key={option.id}>
                               {({ active }) => (
-                                <a
-                                  href={option.href}
+                                <p
+                                  onClick={() => handleSortFilter(option.id)}
                                   className={classNames(
                                     option.current
                                       ? "font-medium text-gray-900"
                                       : "text-gray-500",
                                     active ? "bg-gray-100" : "",
-                                    "block px-4 py-2 text-sm"
+                                    "block px-4 py-2 text-sm cursor-pointer"
                                   )}
                                 >
                                   {option.name}
-                                </a>
+                                </p>
                               )}
                             </Menu.Item>
                           ))}
@@ -310,15 +336,15 @@ const HotelsList = () => {
                       </Disclosure>
                     ))}
                   </form>
-                  <div className="lg:col-span-3">
-                    {places
+                  <motion.div layout className="lg:col-span-3">
+                    {hotels
                       .filter((place) => search.location === place.placeName)
                       .map((place) =>
                         place.hotels.map((hotel) => {
                           return <HotelCard hotel={hotel} key={hotel.id} />;
                         })
                       )}
-                  </div>
+                  </motion.div>
                 </div>
               </section>
             </main>
