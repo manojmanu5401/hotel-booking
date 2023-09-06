@@ -1,56 +1,50 @@
 import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import HotelCard from "../components/HotelCard";
 import places from "../data/places";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import Filter from "./Filter";
 
 const sortOptions = [
   { id: "1", name: "Price: Low to High", current: false },
   { id: "2", name: "Price: High to Low", current: false },
 ];
-const filters = [
+const starFilter = [
+  { value: "5", label: "5 Star", checked: false },
+  { value: "4", label: "4 Star", checked: false },
+  { value: "3", label: "3 Star", checked: false },
+];
+const priceFilter = [
+  { min: "0", value: "0", max: "2000", label: "₹ 0 - ₹ 2000", checked: false },
   {
-    id: "price",
-    name: "Price Per Night",
-    options: [
-      { value: "₹ 0 - ₹ 2000", label: "₹ 0 - ₹ 2000", checked: false },
-      { value: "₹ 2000 - ₹ 3500", label: "₹ 2000 - ₹ 3500", checked: false },
-      { value: "₹ 3500 - ₹ 7500", label: "₹ 3500 - ₹ 7500", checked: false },
-      { value: "₹ 7500 - ₹ 11500", label: "₹ 7500 - ₹ 11500", checked: false },
-      {
-        value: "₹ 11500 - ₹ 15000",
-        label: "₹ 11500 - ₹ 15000",
-        checked: false,
-      },
-      {
-        value: "₹ 15000 - ₹ 30000",
-        label: "₹ 15000 - ₹ 30000",
-        checked: false,
-      },
-    ],
+    min: "2000",
+    value: "2000",
+    max: "3500",
+    label: "₹ 2000 - ₹ 3500",
+    checked: false,
   },
   {
-    id: "star",
-    name: "Star Category",
-    options: [
-      { value: "5 Star", label: "5 Star", checked: false },
-      { value: "4 Star", label: "4 Star", checked: false },
-      { value: "3 Star", label: "3 Star", checked: false },
-    ],
+    min: "3500",
+    value: "3500",
+    max: "5000",
+    label: "₹ 3500 - ₹ 5000",
+    checked: false,
   },
   {
-    id: "PropertyType",
-    name: "Property Type",
-    options: [
-      { value: "hotel", label: "Hotel", checked: false },
-      { value: "Apartment", label: "Apartment", checked: false },
-      { value: "Villa", label: "Villa", checked: false },
-      { value: "HomeStay", label: "Home Stay", checked: false },
-      { value: "Hostel", label: "Hostel", checked: false },
-      { value: "GuestHouse", label: "Guest House", checked: false },
-    ],
+    min: "5000",
+    value: "5000",
+    max: "6500",
+    label: "₹ 5000 - ₹ 6500",
+    checked: false,
+  },
+  {
+    min: "6500",
+    value: "6500",
+    max: "10000000000000000000",
+    label: "> ₹ 6000",
+    checked: false,
   },
 ];
 function classNames(...classes) {
@@ -61,30 +55,100 @@ const HotelsList = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const search = useSelector((state) => state.search);
   const [hotels, setHotels] = useState(places);
+  const [sortCatogery, setSortCatogery] = useState(null);
+  const [rating, setRating] = useState(starFilter);
+  const [price, setPrice] = useState(priceFilter);
 
   const handleSortFilter = (id) => {
-    var hotels = places;
-    if (id === "1") {
-      hotels = hotels.filter((place) => search.location === place.placeName);
-      hotels[0].hotels.sort(
-        (a, b) => parseFloat(a.amount) - parseFloat(b.amount)
-      );
-    }
-    if (id === "2") {
-      hotels = hotels.filter((place) => search.location === place.placeName);
-      hotels[0].hotels.sort(
-        (a, b) => parseFloat(b.amount) - parseFloat(a.amount)
-      );
-    }
-    sortOptions.forEach((option) => {
-      if (option.id === id) option.current = true;
-      else option.current = false;
-    });
-    setHotels(hotels);
+    setSortCatogery(id);
   };
+  const filterOptions = () => {
+    let updatedList = structuredClone(places);
+    updatedList = updatedList
+      .filter((place) => search.location === place.placeName)
+      .map((x) => x);
+    console.log("before updated", updatedList);
+
+    //sort  filter
+    if (sortCatogery) {
+      if (sortCatogery === "1") {
+        updatedList[0].hotels.sort(
+          (a, b) =>
+            parseInt(a.amount) * parseInt(search.days) -
+            (a.isOffer ? 2000 : 0) -
+            (parseInt(b.amount) * parseInt(search.days) -
+              (b.isOffer ? 2000 : 0))
+        );
+      }
+      if (sortCatogery === "2") {
+        updatedList[0].hotels.sort(
+          (a, b) =>
+            parseFloat(b.amount) * parseFloat(search.days) -
+            (b.isOffer ? 2000 : 0) -
+            parseFloat(a.amount) * parseFloat(search.days) -
+            (a.isOffer ? 2000 : 0)
+        );
+      }
+      sortOptions.forEach((option) => {
+        if (option.id === sortCatogery) option.current = true;
+        else option.current = false;
+      });
+    }
+
+    //star  filter
+    const starsChecked = rating
+      .filter((item) => item.checked)
+      .map((item) => parseInt(item.value));
+    if (starsChecked.length) {
+      updatedList[0].hotels = updatedList[0].hotels
+        .filter((item) => starsChecked.includes(item.stars))
+        .map((item) => item);
+    }
+
+    //price filter
+    const priceCheckd = price
+      .filter((item) => item.checked)
+      .map((item) => item);
+    if (priceCheckd.length) {
+      console.log(
+        parseInt(priceCheckd[0].min),
+        priceCheckd[priceCheckd.length - 1].max
+      );
+      updatedList[0].hotels = updatedList[0].hotels
+        .filter(
+          (item) =>
+            parseInt(item.amount) >= priceCheckd[0].min &&
+            parseInt(item.amount) <= priceCheckd[priceCheckd.length - 1].max
+        )
+        .map((item) => item);
+    }
+    console.log("after update", updatedList);
+    setHotels(updatedList);
+  };
+  const handleStarFilter = (e) => {
+    const starFilterStateData = rating;
+    const changeCheckedStar = starFilterStateData.map((item) =>
+      item.value === e.target.value
+        ? { ...item, checked: e.target.checked }
+        : item
+    );
+    setRating(changeCheckedStar);
+  };
+  const handlePriceFilter = (e) => {
+    const priceFilterStateData = price;
+    const changeCheckedPrice = priceFilterStateData.map((item) =>
+      item.value === e.target.value
+        ? { ...item, checked: e.target.checked }
+        : item
+    );
+    setPrice(changeCheckedPrice);
+  };
+
   useEffect(() => {
-    handleSortFilter("0");
-  }, [search]);
+    filterOptions();
+    // eslint-disable-next-line
+  }, [search, sortCatogery, rating, price]);
+
   return (
     <>
       <div className="bg-white">
@@ -140,7 +204,7 @@ const HotelsList = () => {
                     {/* Filters */}
                     <form className="mt-10 border-t border-gray-200">
                       <h3 className="sr-only">Categories</h3>
-                      {filters.map((section) => (
+                      {/* {filters.map((section) => (
                         <Disclosure
                           as="div"
                           key={section.id}
@@ -194,7 +258,7 @@ const HotelsList = () => {
                             </>
                           )}
                         </Disclosure>
-                      ))}
+                      ))} */}
                     </form>
                   </Dialog.Panel>
                 </Transition.Child>
@@ -279,72 +343,32 @@ const HotelsList = () => {
                   {/* Filters */}
                   <form className="hidden lg:block">
                     <h3 className="text-lg font-bold">Select Filters</h3>
-                    {filters.map((section) => (
-                      <Disclosure
-                        as="div"
-                        defaultOpen="true"
-                        key={section.id}
-                        className="border-b border-gray-200 py-6"
-                      >
-                        {({ open }) => (
-                          <>
-                            <h3 className="-my-3 flow-root">
-                              <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                                <span className="font-medium text-gray-900">
-                                  {section.name}
-                                </span>
-                                <span className="ml-6 flex items-center">
-                                  {open ? (
-                                    <span className="material-symbols-outlined h-5 w-5">
-                                      remove
-                                    </span>
-                                  ) : (
-                                    <span className="material-symbols-outlined h-5 w-5">
-                                      add
-                                    </span>
-                                  )}
-                                </span>
-                              </Disclosure.Button>
-                            </h3>
-                            <Disclosure.Panel className="pt-6">
-                              <div className="space-y-4">
-                                {section.options.map((option, optionIdx) => (
-                                  <div
-                                    key={option.value}
-                                    className="flex items-center"
-                                  >
-                                    <input
-                                      id={`filter-${section.id}-${optionIdx}`}
-                                      name={`${section.id}[]`}
-                                      defaultValue={option.value}
-                                      type="checkbox"
-                                      defaultChecked={option.checked}
-                                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <label
-                                      htmlFor={`filter-${section.id}-${optionIdx}`}
-                                      className="ml-3 text-sm text-gray-600"
-                                    >
-                                      {option.label}
-                                    </label>
-                                  </div>
-                                ))}
-                              </div>
-                            </Disclosure.Panel>
-                          </>
-                        )}
-                      </Disclosure>
-                    ))}
+                    <Filter
+                      options={priceFilter}
+                      handleMethod={handlePriceFilter}
+                      title="Price per Night"
+                    />
+                    <Filter
+                      options={starFilter}
+                      handleMethod={handleStarFilter}
+                      title={"Star Catogery"}
+                    />
                   </form>
-                  <motion.div layout className="lg:col-span-3">
-                    {hotels
-                      .filter((place) => search.location === place.placeName)
-                      .map((place) =>
-                        place.hotels.map((hotel) => {
-                          return <HotelCard hotel={hotel} key={hotel.id} />;
-                        })
-                      )}
-                  </motion.div>
+                  {hotels.length && hotels[0].hotels.length ? (
+                    <motion.div layout className="lg:col-span-3">
+                      {hotels
+                        .filter((place) => search.location === place.placeName)
+                        .map((place) =>
+                          place.hotels.map((hotel) => {
+                            return <HotelCard hotel={hotel} key={hotel.id} />;
+                          })
+                        )}
+                    </motion.div>
+                  ) : (
+                    <h1 className="text-center mt-10 text-lg font-bold text-stone-300 lg:col-span-3">
+                      No Properties Found
+                    </h1>
+                  )}
                 </div>
               </section>
             </main>

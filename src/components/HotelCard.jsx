@@ -101,8 +101,7 @@ const HotelCard = (props) => {
                 {!isOffer
                   ? search.days * amount
                   : search.days * amount -
-                    Math.floor(Math.random() * (1000 - 200 + 1)) +
-                    200}
+                    2000}
               </h1>
               <p className="text-[#9DB2BF] text-xs">
                 + ₹{taxAmount} taxes & fees
